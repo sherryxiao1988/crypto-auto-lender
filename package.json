@@ -36,6 +36,6 @@
     "url": "https://github.com/anders94/loan-manager/issues"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": "8.4.0"
   }
 }
