@@ -1,8 +1,8 @@
 module.exports = {
     debug: true,
     makeAndCancelOffers: true,
-    apiServer: false,
-    apiPort: 8080,
+    apiServer: true,
+    apiPort: process.env.PORT || 5000,
     loopDelayInMinutes: 5,
     exchanges: {
 	'bitfinex': {
