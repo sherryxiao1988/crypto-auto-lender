@@ -14,7 +14,9 @@
     "restify": "^4.3.0"
   },
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+    "start": "node app"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/anders94/loan-manager.git"
