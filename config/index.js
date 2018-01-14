@@ -1,5 +1,5 @@
 module.exports = {
-    debug: true,
+    debug: false,
     makeAndCancelOffers: true,
     apiServer: true,
     apiPort: process.env.PORT || 5000,
