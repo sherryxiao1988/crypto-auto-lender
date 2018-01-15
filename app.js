@@ -157,8 +157,7 @@ function manage(exchangeName, handle, currency, settings, cb) {
       ravenMessage += '\n' + '      total:' + data.loanTotal.toFixed(8) + currency + '($'+toUsd(data.loanTotal * data.usdPrice)+')' +
 			    'at' + (data.rateTotal / data.loanTotal).toFixed(2)+'% on' + exchangeName;
       if (Raven) {
-        Raven.captureMessage('Test Event', {
-          msg: ravenMessage,
+        Raven.captureMessage('Test Event\n' + ravenMessage, {
           level: 'info',
         });
       }
@@ -310,8 +309,7 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	    ravenMessage += '  creating offer for' + amount + currency + '($'+ toUsd(amount * data.usdPrice)+') at' +
 			data.targetRate.toFixed(2)+'% for' + data.duration + 'days';
       if (Raven) {
-        Raven.captureMessage('New Offer Created!', {
-          msg: ravenMessage,
+        Raven.captureMessage('New Offer Created!\n' + ravenMessage, {
           level: 'info',
         });
       }
