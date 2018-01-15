@@ -154,13 +154,8 @@ function manage(exchangeName, handle, currency, settings, cb) {
 			    'at', (data.rateTotal / data.loanTotal).toFixed(2)+'% on', exchangeName);
 	    }
 	    console.log();
-      ravenMessage += '\n' + '      total:' + data.loanTotal.toFixed(8) + currency + '($'+toUsd(data.loanTotal * data.usdPrice)+')' +
-			    'at' + (data.rateTotal / data.loanTotal).toFixed(2)+'% on' + exchangeName;
-      if (Raven) {
-        Raven.captureMessage('Test Event\n' + ravenMessage, {
-          level: 'info',
-        });
-      }
+      ravenMessage += '\n' + '      total: ' + data.loanTotal.toFixed(8) + ' ' + currency + '($'+toUsd(data.loanTotal * data.usdPrice)+') ' +
+			    'at ' + (data.rateTotal / data.loanTotal).toFixed(2)+' % on ' + exchangeName;
 	    cb();
 	});
     },
@@ -306,8 +301,8 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	    }
 	    console.log('  creating offer for', amount, currency, '($'+toUsd(amount * data.usdPrice)+') at',
 			data.targetRate.toFixed(2)+'% for', data.duration, 'days');
-	    ravenMessage += '  creating offer for' + amount + currency + '($'+ toUsd(amount * data.usdPrice)+') at' +
-			data.targetRate.toFixed(2)+'% for' + data.duration + 'days';
+	    ravenMessage += '  creating offer for ' + amount + currency + ' ($'+ toUsd(amount * data.usdPrice)+') at ' +
+			data.targetRate.toFixed(2)+'% for ' + data.duration + ' days';
       if (Raven) {
         Raven.captureMessage('New Offer Created!\n' + ravenMessage, {
           level: 'info',
