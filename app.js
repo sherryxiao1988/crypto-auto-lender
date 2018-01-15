@@ -157,7 +157,10 @@ function manage(exchangeName, handle, currency, settings, cb) {
       ravenMessage += '\n' + '      total:' + data.loanTotal.toFixed(8) + currency + '($'+toUsd(data.loanTotal * data.usdPrice)+')' +
 			    'at' + (data.rateTotal / data.loanTotal).toFixed(2)+'% on' + exchangeName;
       if (Raven) {
-        Raven.captureMessage('Test Event', {message: ravenMessage});
+        Raven.captureMessage('Test Event', {
+          msg: ravenMessage,
+          level: 'info',
+        });
       }
 	    cb();
 	});
@@ -307,7 +310,10 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	    ravenMessage += '  creating offer for' + amount + currency + '($'+ toUsd(amount * data.usdPrice)+') at' +
 			data.targetRate.toFixed(2)+'% for' + data.duration + 'days';
       if (Raven) {
-        Raven.captureMessage('New offer created!', {message: ravenMessage});
+        Raven.captureMessage('New Offer Created!', {
+          msg: ravenMessage,
+          level: 'info',
+        });
       }
 			data.targetRate.toFixed(2)+'% for' + data.duration + 'days';
 	    if (config.makeAndCancelOffers) {
