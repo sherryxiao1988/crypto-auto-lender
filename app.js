@@ -29,7 +29,7 @@ async.forever(function(cb) {
     ravenMessage = '';
     ravenMessage += '-----------------------------------\n';
     ravenMessage += (new Date());
-    ravenMessage += '-----------------------------------\n';
+    ravenMessage += '\n-----------------------------------\n';
     console.log('-----------------------------------');
     console.log(new Date());
     console.log('-----------------------------------');
