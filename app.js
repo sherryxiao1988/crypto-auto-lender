@@ -6,6 +6,8 @@ var moment = require('moment');
 var async = require('async');
 
 var stats = {};
+var Raven = null;
+var ravenMessage = '';
 
 if (config.apiServer) {
     var server = restify.createServer();
@@ -16,9 +18,18 @@ if (config.apiServer) {
     server.listen(config.apiPort);
 }
 
+if (config.useSentry) {
+  Raven = require('raven');
+  Raven.config(config.sentryAddress).install();
+}
+
 async.forever(function(cb) {
     var usdTotal = 0;
     var rateTotal = 0;
+    ravenMessage = '';
+    ravenMessage += '-----------------------------------\n';
+    ravenMessage += (new Date());
+    ravenMessage += '-----------------------------------\n';
     console.log('-----------------------------------');
     console.log(new Date());
     console.log('-----------------------------------');
@@ -37,6 +48,9 @@ async.forever(function(cb) {
 		    manage(exchangeName, handle, currency, settings, function(err, data) {
 			if (err) {
 			    console.log(err);
+          if (Raven) {
+            Raven.captureException(err);
+          }
 			}
 			else {
 			    var usd = data.loanTotal * data.usdPrice;
@@ -67,6 +81,9 @@ async.forever(function(cb) {
     function(err) {
 	if (err) {
 	    console.log(err);
+      if (Raven) {
+        Raven.captureException(err);
+      }
 	}
 	stats.usdTotal = '$'+toUsd(usdTotal);
 	stats.blendedRate = (rateTotal / usdTotal).toFixed(2)+'%';
@@ -77,6 +94,7 @@ async.forever(function(cb) {
 	console.log();
 	console.log('done');
 	console.log();
+
 	setTimeout(function() {
 	    cb();
 	}, config.loopDelayInMinutes * 60 * 1000);
@@ -96,6 +114,7 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	      data.usdPrice = usdPrice;
 	      console.log('  usd rate: $'+toUsd(usdPrice));
 	      console.log();
+	      ravenMessage += '  usd rate: $'+toUsd(usdPrice) + '\n';
 	      setTimeout(function() {
 		  cb(err);
 	      }, config.exchanges[exchangeName].msDelayBetweenAPICalls);
@@ -135,6 +154,8 @@ function manage(exchangeName, handle, currency, settings, cb) {
 			    'at', (data.rateTotal / data.loanTotal).toFixed(2)+'% on', exchangeName);
 	    }
 	    console.log();
+      ravenMessage += '\n' + '      total:' + data.loanTotal.toFixed(8) + currency + '($'+toUsd(data.loanTotal * data.usdPrice)+')' +
+			    'at' + (data.rateTotal / data.loanTotal).toFixed(2)+'% on' + exchangeName;
 	    cb();
 	});
     },
@@ -280,6 +301,12 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	    }
 	    console.log('  creating offer for', amount, currency, '($'+toUsd(amount * data.usdPrice)+') at',
 			data.targetRate.toFixed(2)+'% for', data.duration, 'days');
+	    ravenMessage += '  creating offer for' + amount + currency + '($'+ toUsd(amount * data.usdPrice)+') at' +
+			data.targetRate.toFixed(2)+'% for' + data.duration + 'days';
+      if (Raven) {
+        Raven.captureMessage('New offer created!', {message: ravenMessage});
+      }
+			data.targetRate.toFixed(2)+'% for' + data.duration + 'days';
 	    if (config.makeAndCancelOffers) {
 		handle.createLoanOffer(currency, amount, Number(data.targetRate.toFixed(2)), data.duration, function(err, res) {
 		    if (config.debug) {

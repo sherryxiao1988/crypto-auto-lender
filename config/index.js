@@ -3,6 +3,8 @@ module.exports = {
     makeAndCancelOffers: true,
     apiServer: true,
     apiPort: process.env.PORT || 5000,
+    useSentry: true,
+    sentryAddress: process.env.SENTRY || '',
     loopDelayInMinutes: 5,
     exchanges: {
 	'bitfinex': {

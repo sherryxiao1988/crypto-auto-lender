@@ -11,6 +11,7 @@
     "bitfinex": "~1.0.3",
     "moment": "~2.14.1",
     "poloniex.js": "~0.0.6",
+    "raven": "2.3.0",
     "restify": "^4.3.0"
   },
   "devDependencies": {},
