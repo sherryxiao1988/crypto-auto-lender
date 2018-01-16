@@ -22,7 +22,7 @@ module.exports = {
 	    currencies: {
 		eth: {
 		    active: true,
-		    minimumRate: 0.1,
+		    minimumRate: 4,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
@@ -35,7 +35,7 @@ module.exports = {
 		},
 		xrp: {
 		    active: true,
-		    minimumRate: 0.1,
+		    minimumRate: 4,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
