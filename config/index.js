@@ -16,8 +16,8 @@ module.exports = {
 	    duration: {
 		minimum: 2,
 		maximum: 30,
-		lowThreshold: 15,
-		highThreshold: 20,
+		lowThreshold: 10,
+		highThreshold: 18,
 	    },
 	    currencies: {
 		eth: {
