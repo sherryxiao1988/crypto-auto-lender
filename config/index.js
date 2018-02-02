@@ -46,6 +46,19 @@ module.exports = {
 			lowerByPercent: 5
 		    }
 		},
+		btc: {
+		    active: true,
+		    minimumRate: 4,
+		    minimumSizeUSD: 50,
+		    rateCreationStrategy: {
+			name: 'topOfTheBook',
+		    },
+		    rateUpdateStrategy: {
+			name: 'lowerRateWithTime',
+			lowerAfterMinutes: 30,
+			lowerByPercent: 5
+		    }
+		},
 		xrp: {
 		    active: true,
 		    minimumRate: 4,
