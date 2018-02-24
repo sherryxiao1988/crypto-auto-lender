@@ -20,6 +20,19 @@ module.exports = {
 		highThreshold: 18,
 	    },
 	    currencies: {
+		usd: {
+		    active: true,
+		    minimumRate: 5,
+		    minimumSizeUSD: 50,
+		    rateCreationStrategy: {
+			name: 'topOfTheBook',
+		    },
+		    rateUpdateStrategy: {
+			name: 'lowerRateWithTime',
+			lowerAfterMinutes: 30,
+			lowerByPercent: 5
+		    }
+		},
 		eth: {
 		    active: true,
 		    minimumRate: 4,
