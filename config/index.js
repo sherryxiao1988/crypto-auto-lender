@@ -17,7 +17,7 @@ module.exports = {
 		minimum: 2,
 		maximum: 30,
 		lowThreshold: 10,
-		highThreshold: 18,
+		highThreshold: 30,
 	    },
 	    currencies: {
 		usd: {
