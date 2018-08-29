@@ -22,7 +22,7 @@ module.exports = {
 	    currencies: {
 		usd: {
 		    active: true,
-		    minimumRate: 5,
+		    minimumRate: 3,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
@@ -35,7 +35,7 @@ module.exports = {
 		},
 		eth: {
 		    active: true,
-		    minimumRate: 4,
+		    minimumRate: 3,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
@@ -48,7 +48,7 @@ module.exports = {
 		},
 		eos: {
 		    active: true,
-		    minimumRate: 4,
+		    minimumRate: 3,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
@@ -61,7 +61,7 @@ module.exports = {
 		},
 		btc: {
 		    active: true,
-		    minimumRate: 4,
+		    minimumRate: 3,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
@@ -74,7 +74,7 @@ module.exports = {
 		},
 		xrp: {
 		    active: true,
-		    minimumRate: 4,
+		    minimumRate: 3,
 		    minimumSizeUSD: 50,
 		    rateCreationStrategy: {
 			name: 'topOfTheBook',
