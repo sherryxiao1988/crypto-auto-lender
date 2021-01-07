@@ -94,6 +94,7 @@ async.forever(function(cb) {
 	console.log();
 	console.log('done');
 	console.log();
+  ravenMessage += 'summary' + '\n  grand total: $' + toUsd(usdTotal) + 'loaned at' + (rateTotal / usdTotal).toFixed(2) + '%\ndone\n';
 
 	setTimeout(function() {
 	    cb();
@@ -114,7 +115,7 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	      data.usdPrice = usdPrice;
 	      console.log('  usd rate: $'+toUsd(usdPrice));
 	      console.log();
-	      ravenMessage += '  usd rate: $'+toUsd(usdPrice) + '\n';
+	      ravenMessage += '\n  usd rate: $'+toUsd(usdPrice);
 	      setTimeout(function() {
 		  cb(err);
 	      }, config.exchanges[exchangeName].msDelayBetweenAPICalls);
@@ -301,7 +302,7 @@ function manage(exchangeName, handle, currency, settings, cb) {
 	    }
 	    console.log('  creating offer for', amount, currency, '($'+toUsd(amount * data.usdPrice)+') at',
 			data.targetRate.toFixed(2)+'% for', data.duration, 'days');
-	    ravenMessage += '  creating offer for ' + amount + currency + ' ($'+ toUsd(amount * data.usdPrice)+') at ' +
+	    ravenMessage += '\n\n  creating offer for ' + amount + currency + ' ($'+ toUsd(amount * data.usdPrice)+') at ' +
 			data.targetRate.toFixed(2)+'% for ' + data.duration + ' days';
       if (Raven) {
         Raven.captureMessage('New Offer Created!\n' + ravenMessage, {
