@@ -33,6 +33,19 @@ module.exports = {
 			lowerByPercent: 5
 		    }
 		},
+		usdt: {
+		    active: true,
+		    minimumRate: 3,
+		    minimumSizeUSD: 50,
+		    rateCreationStrategy: {
+			name: 'topOfTheBook',
+		    },
+		    rateUpdateStrategy: {
+			name: 'lowerRateWithTime',
+			lowerAfterMinutes: 30,
+			lowerByPercent: 5
+		    }
+		},
 		eth: {
 		    active: true,
 		    minimumRate: 3,
