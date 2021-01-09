@@ -6,7 +6,6 @@ var moment = require('moment');
 var async = require('async');
 
 var stats = {};
-
 var Raven = null;
 var ravenMessage = '';
 
